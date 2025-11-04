@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light" style=""><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>だいもん 友達ご紹介制度・アンバサダープログラム</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;700;800&amp;display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', sans-serif;
+        line-height: 1.7;
+        color: #333;
+        background-color: #ffffff;
+        max-width: 480px;
+        margin: 0 auto;
+        overflow-x: hidden;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+
+      /* ヘッダー */
+      .hero {
+        position: relative;
+        text-align: center;
+        color: white;
+        margin-bottom: 40px;
+      }
+
+      .hero img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 0 0 24px 24px;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
+        border-radius: 0 0 24px 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+        font-weight: 800;
+        margin-bottom: 8px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero .subtitle {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero .description {
+        font-size: 14px;
+        font-weight: 400;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+
+      /* セクション共通 */
+      .section {
+        margin-bottom: 50px;
+        padding: 0 20px;
+      }
+
+      .section-title {
+        font-size: 24px;
+        font-weight: 800;
+        color: #8b6f47;
+        text-align: center;
+        margin-bottom: 24px;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 3px;
+        background-color: #e86825;
+        margin: 8px auto 0;
+        border-radius: 2px;
+      }
+
+      .card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 4px 20px rgba(139, 111, 71, 0.1);
+        margin-bottom: 20px;
+      }
+
+      .card-beige {
+        background: #f5f0e8;
+      }
+
+      /* ご紹介制度 */
+      .intro-text {
+        font-size: 16px;
+        line-height: 1.8;
+        text-align: center;
+        color: #555;
+      }
+
+      /* 暮らしをアップデート */
+      .lifestyle-card {
+        background: linear-gradient(135deg, #f5f0e8 0%, #faf8f3 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .lifestyle-card::before {
+        content: '';
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 150px;
+        height: 150px;
+        background: radial-gradient(circle, rgba(232, 104, 37, 0.08) 0%, transparent 70%);
+        border-radius: 50%;
+      }
+
+      .lifestyle-subtitle {
+        font-size: 16px;
+        font-weight: 700;
+        color: #e86825;
+        text-align: center;
+        margin-bottom: 16px;
+        line-height: 1.6;
+      }
+
+      .lifestyle-description {
+        font-size: 15px;
+        color: #666;
+        text-align: center;
+        line-height: 1.9;
+        margin-bottom: 28px;
+        padding: 0 8px;
+      }
+
+      .lifestyle-list {
+        list-style: none;
+      }
+
+      .lifestyle-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 14px;
+        padding: 14px 16px;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 14px;
+        box-shadow: 0 2px 8px rgba(139, 111, 71, 0.06);
+        transition: all 0.3s ease;
+      }
+
+      .lifestyle-item:hover {
+        transform: translateX(4px);
+        box-shadow: 0 4px 12px rgba(232, 104, 37, 0.12);
+      }
+
+      .lifestyle-icon {
+        font-size: 22px;
+        margin-right: 12px;
+        flex-shrink: 0;
+      }
+
+      .lifestyle-text {
+        font-size: 15px;
+        color: #555;
+        font-weight: 500;
+        line-height: 1.4;
+      }
+
+      /* コンセプトボックス */
+      .concept-box {
+        background: rgba(255, 255, 255, 0.9);
+        border-left: 4px solid #e86825;
+        padding: 20px 16px;
+        margin: 28px 0;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(139, 111, 71, 0.08);
+      }
+
+      .concept-line {
+        font-size: 15px;
+        color: #8b6f47;
+        font-weight: 700;
+        line-height: 1.9;
+        margin-bottom: 4px;
+      }
+
+      .concept-message {
+        font-size: 15px;
+        color: #666;
+        line-height: 1.9;
+        margin-top: 12px;
+        text-align: center;
+      }
+
+      .highlight-text {
+        color: #e86825;
+        font-weight: 700;
+        font-size: 16px;
+      }
+
+      /* 紹介喚起ボックス */
+      .referral-cta-box {
+        background: linear-gradient(135deg, rgba(232, 104, 37, 0.08) 0%, rgba(232, 104, 37, 0.03) 100%);
+        padding: 20px;
+        border-radius: 16px;
+        margin-top: 24px;
+        text-align: center;
+        border: 2px dashed #e86825;
+      }
+
+      .referral-cta-text {
+        font-size: 15px;
+        color: #555;
+        font-weight: 600;
+        line-height: 1.8;
+        margin-bottom: 8px;
+      }
+
+      .referral-cta-subtext {
+        font-size: 16px;
+        color: #e86825;
+        font-weight: 700;
+        line-height: 1.6;
+      }
+
+      /* LINEでの紹介の流れ */
+      .steps {
+        margin-top: 24px;
+      }
+
+      .step {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .step:not(:last-child)::after {
+        content: '↓';
+        position: absolute;
+        left: 20px;
+        bottom: -10px;
+        font-size: 20px;
+        color: #e86825;
+        font-weight: bold;
+      }
+
+      .step-number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: #e86825;
+        color: white;
+        border-radius: 50%;
+        font-weight: 700;
+        margin-right: 16px;
+        flex-shrink: 0;
+      }
+
+      .step-content {
+        flex: 1;
+      }
+
+      .step-title {
+        font-weight: 700;
+        color: #8b6f47;
+        margin-bottom: 4px;
+      }
+
+      .step-description {
+        font-size: 14px;
+        color: #666;
+      }
+
+      /* アンバサダープログラム */
+      .program-subtitle {
+        font-size: 18px;
+        font-weight: 700;
+        color: #8b6f47;
+        text-align: center;
+        margin-bottom: 24px;
+      }
+
+      .rank-grid {
+        display: grid;
+        gap: 12px;
+        margin-bottom: 32px;
+      }
+
+      .rank-card {
+        background: linear-gradient(135deg, #e86825 0%, #f4a261 100%);
+        color: white;
+        padding: 16px;
+        border-radius: 16px;
+        text-align: center;
+        position: relative;
+      }
+
+      .rank-card.start {
+        background: linear-gradient(135deg, #8b6f47 0%, #a67c52 100%);
+      }
+
+      .rank-card.premium {
+        background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
+        color: #333;
+      }
+
+      .rank-name {
+        font-size: 18px;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+
+      .rank-points {
+        font-size: 14px;
+        margin-bottom: 8px;
+        opacity: 0.9;
+      }
+
+      .rank-benefit {
+        font-size: 13px;
+        line-height: 1.4;
+      }
+
+      /* ポイント表 */
+      .points-table {
+        margin-top: 32px;
+      }
+
+      .table-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: #8b6f47;
+        margin-bottom: 12px;
+        text-align: center;
+      }
+
+      /* アンバサダー活動強調 */
+      .table-title-featured {
+        font-size: 20px;
+        font-weight: 800;
+        color: #ffffff;
+        background: linear-gradient(135deg, #e86825 0%, #f4a261 100%);
+        padding: 16px 20px;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 16px;
+        box-shadow: 0 4px 16px rgba(232, 104, 37, 0.3);
+        position: relative;
+      }
+
+      .featured-badge {
+        display: inline-block;
+        background: #ffffff;
+        color: #e86825;
+        font-size: 12px;
+        font-weight: 800;
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+
+      .ambassador-intro {
+        font-size: 15px;
+        color: #666;
+        text-align: center;
+        margin-bottom: 16px;
+        padding: 12px 16px;
+        background: linear-gradient(135deg, rgba(232, 104, 37, 0.05) 0%, rgba(232, 104, 37, 0.02) 100%);
+        border-radius: 8px;
+        border-left: 3px solid #e86825;
+        line-height: 1.7;
+      }
+
+      .table-featured {
+        border: 2px solid #e86825;
+      }
+
+      .highlight-row {
+        background: linear-gradient(135deg, rgba(232, 104, 37, 0.08) 0%, rgba(232, 104, 37, 0.03) 100%) !important;
+      }
+
+      .highlight-row td {
+        border-bottom: 1px solid rgba(232, 104, 37, 0.2) !important;
+        font-weight: 600;
+      }
+
+      .sub-text {
+        font-size: 11px;
+        color: #999;
+        font-weight: 400;
+        display: block;
+        margin-top: 2px;
+      }
+
+      .point-large {
+        font-size: 16px;
+        color: #e86825;
+        font-weight: 800;
+      }
+
+      /* セカンダリハイライト行 */
+      .highlight-row-secondary {
+        background: linear-gradient(135deg, rgba(232, 104, 37, 0.05) 0%, rgba(232, 104, 37, 0.02) 100%) !important;
+        border-left: 3px solid #e86825;
+      }
+
+      .highlight-row-secondary td {
+        border-bottom: 1px solid rgba(232, 104, 37, 0.15) !important;
+        font-weight: 600;
+      }
+
+      .point-medium {
+        font-size: 15px;
+        color: #e86825;
+        font-weight: 700;
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 24px;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(139, 111, 71, 0.1);
+      }
+
+      .table th {
+        background: #8b6f47;
+        color: white;
+        padding: 12px 8px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 14px;
+      }
+
+      .table td {
+        padding: 10px 8px;
+        text-align: center;
+        border-bottom: 1px solid #f5f0e8;
+        font-size: 13px;
+      }
+
+      .table tr:last-child td {
+        border-bottom: none;
+      }
+
+      /* 安心サポート */
+      .support-list {
+        list-style: none;
+      }
+
+      .support-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+        padding: 16px;
+        background: #f5f0e8;
+        border-radius: 16px;
+      }
+
+      .support-check {
+        font-size: 20px;
+        color: #e86825;
+        margin-right: 12px;
+      }
+
+      .support-text {
+        font-size: 15px;
+        color: #555;
+        font-weight: 500;
+      }
+
+      /* メッセージ&CTA */
+      .message-section {
+        text-align: center;
+        padding: 40px 20px;
+        background: linear-gradient(135deg, #f5f0e8 0%, #ffffff 100%);
+        border-radius: 24px;
+        margin: 0 20px 40px;
+      }
+
+      .message-title {
+        font-size: 28px;
+        font-weight: 800;
+        color: #8b6f47;
+        margin-bottom: 16px;
+        font-style: italic;
+      }
+
+      .message-quote {
+        font-size: 18px;
+        font-weight: 700;
+        color: #e86825;
+        margin-bottom: 16px;
+        font-style: italic;
+      }
+
+      .message-text {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 32px;
+        line-height: 1.8;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: linear-gradient(135deg, #e86825 0%, #f4a261 100%);
+        color: white;
+        padding: 16px 32px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 700;
+        box-shadow: 0 4px 16px rgba(232, 104, 37, 0.3);
+        margin-bottom: 24px;
+        min-width: 280px;
+        min-height: 44px;
+        line-height: 1.2;
+      }
+
+      .footer-text {
+        font-size: 14px;
+        color: #8b6f47;
+        font-weight: 500;
+      }
+    </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Open%20Sans:wght@400&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Noto%20Sans%20JP:wght@400&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;display=swap" rel="stylesheet"></head>
+  <body style="">
+    <!-- ヘッダー -->
+    <div class="hero">
+      <img src="https://cdn1.genspark.ai/user-upload-image/5_generated/ff9b4089-3d47-435a-b61b-09bb952e6966.jpeg" alt="家族がリビングで談笑している様子" data-height-listener-added="true">
+      <div class="hero-overlay">
+        <h1>いい家づくりは、いいご縁から。</h1>
+        <div class="subtitle">あなたの紹介が、誰かの暮らしを変える。</div>
+        <div class="description">ご紹介いただいた方も、された方も、ありがとうの気持ちをカタチに。</div>
+      </div>
+    </div>
+
+    <!-- セクション１：ご紹介制度とは -->
+    <section class="section">
+      <h2 class="section-title">ご紹介制度とは</h2>
+      <div class="card">
+        <p class="intro-text">
+          お知り合いにリフォームやリノベーションを考えている方がいらっしゃいましたら、ぜひ「だいもん」を</p><p class="intro-text">ご紹介ください。
+          紹介した方・された方それぞれに、心を込めてギフト券をプレゼント。
+        </p>
+      </div>
+    </section>
+
+    <!-- セクション２：暮らしをアップデート -->
+    <section class="section">
+      <h2 class="section-title">暮らしをアップデートしよう。</h2>
+      <div class="card card-beige lifestyle-card">
+        <div class="lifestyle-subtitle">小さな工夫で、毎日の心地よさが変わる。</div>
+        <p class="lifestyle-description">
+          朝日が差し込むリビング、子どもが笑顔になる子ども部屋、<br>
+          雨の日も安心のカーポート。<br>
+          住まいを少し整えるだけで、暮らしは想像以上に豊かになります。
+        </p>
+        
+        <!-- 新しいコンセプトメッセージ -->
+        <div class="concept-box">
+          <div class="concept-line">「直す」から、「整える」へ。</div>
+          <div class="concept-line">「不便を解消する」から、「暮らしをアップデートする」へ。</div>
+          <div class="concept-message">
+            だいもんのリフォームは、<br>
+            <span class="highlight-text">"暮らしの質"を変えるリノベーション</span>です。
+          </div>
+        </div>
+
+        <ul class="lifestyle-list">
+          <li class="lifestyle-item">
+            <div class="lifestyle-icon">☀️</div>
+            <div class="lifestyle-text">朝が楽しみになるキッチン</div>
+          </li>
+          <li class="lifestyle-item">
+            <div class="lifestyle-icon">🍽️</div>
+            <div class="lifestyle-text">家族が集うダイニング</div>
+          </li>
+          <li class="lifestyle-item">
+            <div class="lifestyle-icon">🌱</div>
+            <div class="lifestyle-text">子どもがのびのび育つ空間</div>
+          </li>
+          <li class="lifestyle-item">
+            <div class="lifestyle-icon">✨</div>
+            <div class="lifestyle-text">ゆとりを生む収納と動線</div>
+          </li>
+          <li class="lifestyle-item">
+            <div class="lifestyle-icon">🌿</div>
+            <div class="lifestyle-text">快適性能で一年中ここちよく</div>
+          </li>
+          <li class="lifestyle-item">
+            <div class="lifestyle-icon">🏡</div>
+            <div class="lifestyle-text">「我が家が一番」と思える家に</div>
+          </li>
+        </ul>
+
+        <!-- 紹介を喚起するメッセージ -->
+        <div class="referral-cta-box">
+          <div class="referral-cta-text">
+            もし、周りにこんな暮らしを求めている方がいたら、<br>
+            ぜひ「だいもん」をご紹介ください。
+          </div>
+          <div class="referral-cta-subtext">
+            大切な方に、豊かな暮らしをご一緒に</div><div class="referral-cta-subtext">贈りませんか？
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- セクション３：LINEでの紹介の流れ -->
+    <section class="section">
+      <h2 class="section-title">LINEで簡単3ステップ</h2>
+      <div class="card">
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <div class="step-title">メニューをタップ</div>
+              <div class="step-description">リッチメニューから「イベントを友達に紹介」をタップ</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <div class="step-title">イベントを選択</div>
+              <div class="step-description">イベントを選び「友達に紹介する」をタップ</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <div class="step-title">友達に送信</div>
+              <div class="step-description">LINEで友達を選んで送信 → 完了！</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- セクション４：アンバサダープログラム -->
+    <section class="section">
+      <h2 class="section-title">ポイントをためて、もっと楽しく</h2>
+      <div class="program-subtitle">アンバサダー会員ランク認定制度</div><div class="program-subtitle"><span style="font-size: 12px;">2025.4.20~2026.3.31の活動合計ポイントで2026年会員ランク認定<br>
+  
+    <!--StartFragment--><span style="
+        color: rgb(139, 111, 71);
+        font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-variant-ligatures: normal;
+        font-variant-caps: normal;
+        font-weight: 700;
+        letter-spacing: normal;
+        orphans: 2;
+        text-align: center;
+        text-indent: 0px;
+        text-transform: none;
+        widows: 2;
+        word-spacing: 0px;
+        -webkit-text-stroke-width: 0px;
+        white-space: normal;
+        background-color: rgb(255, 255, 255);
+        text-decoration-thickness: initial;
+        text-decoration-style: initial;
+        text-decoration-color: initial;
+        display: inline !important;
+        float: none;
+      ">会員ランクに応じたプレゼントが届きます！！</span><!--EndFragment-->
+  
+
+<br></span></div>
+
+      <div class="rank-grid">
+        <div class="rank-card start">
+          <div class="rank-name">START</div>
+          <div class="rank-benefit">イベントやお役立ち情報が届きます</div>
+        </div>
+        <div class="rank-card">
+          <div class="rank-name">レギュラー</div>
+          <div class="rank-points">5,000pt〜</div>
+          <div class="rank-benefit">Amazonギフト券500円を年1回プレゼント</div>
+        </div>
+        <div class="rank-card">
+          <div class="rank-name">ブロンズ</div>
+          <div class="rank-points">1万pt〜</div>
+          <div class="rank-benefit">グルメギフト（3,850円）を年1回プレゼント</div>
+        </div>
+        <div class="rank-card">
+          <div class="rank-name">シルバー</div>
+          <div class="rank-points">3万pt〜</div>
+          <div class="rank-benefit">グルメギフト（5,500円）を年1回プレゼント</div>
+        </div>
+        <div class="rank-card">
+          <div class="rank-name">ゴールド</div>
+          <div class="rank-points">5万pt〜</div>
+          <div class="rank-benefit">グルメギフト（7,700円）を年1回プレゼント</div>
+        </div>
+        <div class="rank-card premium">
+          <div class="rank-name">プレミアム</div>
+          <div class="rank-points">10万pt〜</div>
+          <div class="rank-benefit">グルメギフト（11,000円）を年2回プレゼント</div></div></div><div class="points-table">
+        
+        <!-- アンバサダー活動を先に表示 -->
+        <div class="table-title-featured">
+          <span class="featured-badge">POINT!</span>
+          アンバサダー活動によるポイント
+        </div>
+        <div class="ambassador-intro">
+          簡単な活動で、どなたでもポイントが貯まります！<br>
+          お友達紹介やSNS投稿で、気軽に参加できます。
+        </div>
+        <table class="table table-featured">
+          <thead>
+            <tr>
+              <th>活動内容</th>
+              <th>獲得ポイント</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight-row">
+              <td>
+                <strong>LINEによる友だち紹介</strong><br>
+                <span class="sub-text">お友達を1名ご紹介</span>
+              </td>
+              <td><strong class="point-large">1,000pt</strong></td>
+            </tr>
+            <tr class="highlight-row">
+              <td>
+                <strong>ご紹介された方のイベント・店舗来店</strong><br>
+                <span class="sub-text">1回あたり</span>
+              </td>
+              <td><strong class="point-large">1,000pt</strong></td>
+            </tr>
+            <tr class="highlight-row">
+              <td>
+                <strong>ご紹介された方のご成約時</strong><br>
+                <span class="sub-text">金額に応じて</span>
+              </td>
+              <td><strong class="point-large">1,000pt〜</strong></td>
+            </tr>
+            <tr class="highlight-row-secondary">
+              <td>
+                <strong>Googleマップ口コミ記入</strong>
+              </td>
+              <td><strong class="point-medium">1,000pt</strong></td>
+            </tr>
+            <tr class="highlight-row-secondary">
+              <td>
+                <strong>Googleマップへ写真投稿</strong>
+              </td>
+              <td><strong class="point-medium">1,000pt</strong></td>
+            </tr>
+            <tr class="highlight-row-secondary">
+              <td>
+                <strong>SNSへご投稿</strong>
+              </td>
+              <td><strong class="point-medium">1,000pt</strong></td>
+            </tr>
+            <tr class="highlight-row-secondary">
+              <td>
+                <strong>オーナー様のイベントへのご参加</strong>
+              </td>
+              <td><strong class="point-medium">1,000pt</strong></td>
+            </tr>
+            <tr class="highlight-row-secondary">
+              <td>
+                <strong>Instagramハッシュタグ投稿</strong><br>
+                <span class="sub-text">最大4投稿まで</span>
+              </td>
+              <td><strong class="point-medium">1,000pt</strong></td>
+            </tr>
+            <tr>
+              <td>各種アンケートへのご協力</td>
+              <td>500pt</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="table-title">工事金額によるポイント</div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>工事金額</th>
+              <th>獲得ポイント</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>100,000円</td>
+              <td>1,000pt</td>
+            </tr>
+            <tr>
+              <td>200,000円</td>
+              <td>2,000pt</td>
+            </tr>
+            <tr>
+              <td>300,000円</td>
+              <td>3,000pt</td>
+            </tr>
+            <tr>
+              <td>500,000円</td>
+              <td>5,000pt</td>
+            </tr>
+            <tr>
+              <td>700,000円</td>
+              <td>7,000pt</td>
+            </tr>
+            <tr>
+              <td>1,000,000円</td>
+              <td>10,000pt</td>
+            </tr>
+            <tr>
+              <td>2,000,000円</td>
+              <td>20,000pt</td>
+            </tr>
+            <tr>
+              <td>3,000,000円</td>
+              <td>30,000pt</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- セクション５：安心サポート -->
+    <section class="section">
+      <h2 class="section-title">安心してご紹介いただけます</h2>
+      <div class="card">
+        <ul class="support-list">
+          <li class="support-item">
+            <div class="support-check">☑</div>
+            <div class="support-text">無理な営業は一切なし</div>
+          </li>
+          <li class="support-item">
+            <div class="support-check">☑</div>
+            <div class="support-text">相談内容は秘密厳守</div>
+          </li>
+          <li class="support-item">
+            <div class="support-check">☑</div>
+            <div class="support-text">ご紹介者・ご友人双方に特典</div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- セクション６：メッセージ＆CTA -->
+    <div class="message-section">
+      <h2 class="message-title">家づくりは、人づくり</h2>
+      <div class="message-quote">「ご縁をつなぎ、想いをかたちに」</div>
+      <p class="message-text">あなたの紹介が、誰かの未来の住まいを支えます。</p>
+      <a href="#" class="cta-button">📲 今すぐLINEで紹介する</a>
+      <div class="footer-text">お問い合わせはLINEトークから</div>
+    </div>
+  
+
+</body></html>
